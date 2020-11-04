@@ -11,6 +11,7 @@ public class Character {
     public int smidighet;
     //Github-test Mona
     //Test Andreas
+    //Test Tarzan
 
     public Character(int initiativ, int tålighet, int attack, int smidighet) {
         this.initiativ = initiativ;
