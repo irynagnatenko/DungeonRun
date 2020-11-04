@@ -9,6 +9,7 @@ public class Character {
     public int tålighet;
     public int attack;
     public int smidighet;
+    //Github-test Mona
 
     public Character(int initiativ, int tålighet, int attack, int smidighet) {
         this.initiativ = initiativ;
