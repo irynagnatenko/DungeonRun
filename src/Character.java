@@ -13,6 +13,7 @@ public class Character {
     //Test Andreas
     //Test Tarzan
     //Test magdabq
+    //Test Linus
     
 
     public Character(int initiativ, int tålighet, int attack, int smidighet) {
