@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author linus
- */
 public class Warrior extends Character {
+    
+    final String hero = "Warrior";
    
-    public Warrior(int initiativ, int tålighet, int attack, int smidighet) {
-        super(initiativ,  tålighet,  attack, smidighet);
-}
+    public Warrior(String name, int initiativ, int tålighet, int attack, int smidighet) {
+        super(name,initiativ,  tålighet,  attack, smidighet);
+    }
+    
+    //Specialability();
+    //FIRST impact per battle = blockchance 100%
+    // from battle call method - hero.SpecialAbility(); - with body??
     
 }
