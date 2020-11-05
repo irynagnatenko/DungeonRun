@@ -6,6 +6,7 @@ public class Warrior extends Character {
         super(name,initiativ,  tålighet,  attack, smidighet);
     }
     
+    
     //Specialability();
     //FIRST impact per battle = blockchance 100%
     // from battle call method - hero.SpecialAbility(); - with body??
