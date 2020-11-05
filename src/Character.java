@@ -1,21 +1,21 @@
-/**
- * Created by Iryna Gnatenko
- * Date 10/27/2020
- * Time 1:32 PM
- * Project untitled1
- */
 public class Character {
-    public int initiativ;
-    public int tålighet;
-    public int attack;
-    public int smidighet;
-    //Github-test Mona
-    //Test Andreas
-    //Test Tarzan
-    //Test magdabq
-    //Test Linus
     
+    private String name;
+    private int initiativ;
+    private int tålighet;
+    private int attack;
+    private int smidighet;
 
+    //Hero constructor// hej
+    public Character(String name, int initiativ, int tålighet, int attack, int smidighet) {
+        this.name = name;
+        this.initiativ = initiativ;
+        this.tålighet = tålighet;
+        this.attack = attack;
+        this.smidighet = smidighet;
+    }
+    
+    //Monster constructor
     public Character(int initiativ, int tålighet, int attack, int smidighet) {
         this.initiativ = initiativ;
         this.tålighet = tålighet;
