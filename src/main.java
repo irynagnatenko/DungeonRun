@@ -18,10 +18,11 @@ import java.util.logging.Logger;
 
 class main {
     
+    static String checkName;
     static Scanner input = new Scanner(System.in);
     static Character hero = null;
     static ArrayList<Character> heroes = new ArrayList<>();
-    static String fileName = "data.bin";
+    static String fileName = "data.ser";
     static int choice;
     static boolean runAgain = true;
 
@@ -30,8 +31,6 @@ class main {
         while (runAgain) {            
           menu();  
         }
-        
-
     }
 
     public static void menu() {
@@ -39,6 +38,7 @@ class main {
         System.out.println("Hej och välkommen till Dungeon Run! Låt äventyret börja!");
         System.out.println("1. Skapa en ny hjälte");
         System.out.println("2. Ladda en befintligt");
+        System.out.println("0. Avsluta programmet");
         
         choice = input.nextInt();
             switch(choice) {
@@ -46,7 +46,7 @@ class main {
                     createHero();
                     break;
                 case 2:
-                    //loadExistingHero()
+                    loadExistingHero();
                     break;
                 case 0:
                     saveToFile();
@@ -104,14 +104,28 @@ class main {
         }
     } 
     
+    public static void loadExistingHero() {
+        input.nextLine();
+        System.out.println("Ange namnet för din hjälte: ");
+            checkName = input.nextLine();
+            
+            for(Character c : heroes) {
+            if(checkName.equals(c.getName())) {
+                hero = c;
+                }
+            }
+            
+                System.out.println("Du har laddat hjälten: " + hero.toString());             
+            }
+    
     public static void importFromFile() {
-        
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));
+            
             heroes = (ArrayList<Character>) is.readObject();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+            is.close();
+            
+        }catch (IOException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
