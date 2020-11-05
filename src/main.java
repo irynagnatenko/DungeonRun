@@ -18,46 +18,67 @@ import java.util.logging.Logger;
 
 class main {
     
+    static Scanner input = new Scanner(System.in);
+    static Character hero = null;
     static ArrayList<Character> heroes = new ArrayList<>();
     static String fileName = "data.bin";
+    static int choice;
 
     public static void main(String[] args) {
 
-        readUserInput();
+        menu();
 
     }
 
-    public static void readUserInput() {
-        Scanner sc = new Scanner(System.in);
+    public static void menu() {
+    
+        System.out.println("Hej och välkommen till Dungeon Run! Låt äventyret börja!");
+        System.out.println("1. Skapa en ny hjälte");
+        System.out.println("2. Ladda en befintligt");
+        
+        choice = input.nextInt();
+            switch(choice) {
+                case 1:
+                    createHero();
+                    break;
+                case 2:
+                    //loadExistingHero()
+                    break;
+            }
+    }
+    
+    public static void createHero() {
+        
+        System.out.println("Välj en hjälte: ");
 
-        System.out.println("Hej och välkommen till Dungeon Run! Börja med att välja din spelkaraktär.");
+        System.out.print("1. Riddare");
+        System.out.print("\t2. Trollkarl");
+        System.out.print("\t3. Tjuv");
 
-        System.out.println("1. Riddare");
-        System.out.println("2. Trollkarl");
-        System.out.println("3. Tjuv");
+        choice = input.nextInt();
+        input.nextLine();
+        
+        System.out.println("Ange ett namn för din hjälte: ");
+        String name = input.nextLine();
 
-        int characterChoice = sc.nextInt();
-        sc.nextLine();
-
-        if (characterChoice == 1) {
-            Character riddaren = new Hero(5, 9, 6, 4);
-            System.out.println("Du har valt riddaren. Du har följande attribut: " + riddaren.toString());
-
-        } else if (characterChoice == 2) {
-            Character trollkarl = new Hero(6, 4, 9, 5);
-            System.out.println("Du har valt trollkarl. Du har följande attribut: " + trollkarl.toString());
-
-        } else if (characterChoice == 3) {
-            Character tjuven = new Hero(6, 5, 5, 7);
-            System.out.println("Du har valt tjuven. Du har följande attribut: " + tjuven.toString());
+        switch(choice) {
+            case 1:
+                hero = new Warrior(name,5, 9, 6, 4);
+                break;
+            
+            case 2:
+                hero = new Mage(name,6, 4, 9, 5);
+                break;
+                
+            case 3:
+                hero = new Thief(name,6, 5, 5, 7);
+                break;
         }
 
-        System.out.println("Välj nu ett namn till din spelare");
+        System.out.println("Du har valt: " + hero.toString());
 
-        String characterName = sc.nextLine();
-
-        Maps mapsObjects = new Maps();  // skapa oblekt av klassen Maps
-        mapsObjects.mapsMenu();         // ropa på objektets metod mapsMenu
+        //Maps mapsObjects = new Maps();  // skapa oblekt av klassen Maps
+        //mapsObjects.mapsMenu();         // ropa på objektets metod mapsMenu
     }
     
     public static void saveToFile() { //Jag behöver få in en arrayList eller ett object i metoden. 
