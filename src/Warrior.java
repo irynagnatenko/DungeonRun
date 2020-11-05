@@ -2,10 +2,14 @@ public class Warrior extends Character {
     
     final String hero = "Warrior";
    
-    public Warrior(String name, int initiativ, int tålighet, int attack, int smidighet) {
-        super(name,initiativ,  tålighet,  attack, smidighet);
+    public Warrior(String name, int initiative, int endurance, int attack, int flexibility){
+           super(name,initiative,endurance,attack,flexibility);
     }
     
+     @Override
+    public String toString() {
+        return this.hero + "\nNamn: " + this.getName() + "\nInitiativ: " + this.getInitiative() + "\nTålighet: " + this.getEndurance() + "\nAttack: " + this.getAttack() + "\nSmidighet: " + this.getFlexibility();
+    }
     //Specialability();
     //FIRST impact per battle = blockchance 100%
     // from battle call method - hero.SpecialAbility(); - with body??
