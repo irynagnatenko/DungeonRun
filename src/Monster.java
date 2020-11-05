@@ -1,15 +1,8 @@
-/**
- * Created by Iryna Gnatenko
- * Date 10/27/2020
- * Time 1:32 PM
- * Project untitled1
- */
 public class Monster extends Character {
     public double vanlighet;
 
-    public Monster (int initiativ, int tålighet, int attack, int smidighet, double vanlighet) {
-        super(initiativ,  tålighet,  attack, smidighet);
-        this.vanlighet = vanlighet;
+    public Monster (int initiative, int endurance, int attack, int flexibility) {
+        super(initiative, endurance, attack, flexibility);
     }
 
     public double getVanlighet() {
