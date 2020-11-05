@@ -1,7 +1,7 @@
 
 import java.io.Serializable;
 
-public class Character implements Serializable{
+public abstract class Character implements Serializable{
     
     private String name;
     private int initiative;
