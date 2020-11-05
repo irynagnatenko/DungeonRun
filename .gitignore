@@ -1,2 +1,5 @@
 # Project exclude paths
 /out/
+/JavaProject3/nbproject/private/
+/JavaProject3/build/
+/DungenRunProv/build/

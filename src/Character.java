@@ -1,4 +1,7 @@
-public abstract class Character {
+
+import java.io.Serializable;
+
+public class Character implements Serializable{
     
     private String name;
     private int initiative;
@@ -6,7 +9,7 @@ public abstract class Character {
     private int attack;
     private int flexibility;
 
-    //Hero constructor// HEJ från Johanna
+    //Hero constructor// HEJ frï¿½n Johanna
     Character(String name, int initiative, int endurance, int attack, int flexibility) {
         this.name = name;
         this.initiative = initiative;

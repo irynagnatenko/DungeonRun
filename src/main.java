@@ -5,9 +5,21 @@
  * Project untitled1
  */
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class main {
+    
+    static ArrayList<Character> heroes = new ArrayList<>();
+    static String fileName = "data.bin";
 
     public static void main(String[] args) {
 
@@ -46,6 +58,34 @@ class main {
 
         Maps mapsObjects = new Maps();  // skapa oblekt av klassen Maps
         mapsObjects.mapsMenu();         // ropa på objektets metod mapsMenu
+    }
+    
+    public static void saveToFile() { //Jag behöver få in en arrayList eller ett object i metoden. 
+
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
+            os.writeObject(heroes); //Objectet ska in hit. 
+            os.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+    
+    public static void importFromFile() {
+        
+        try {
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));
+            heroes = (ArrayList<Character>) is.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
 }
 
