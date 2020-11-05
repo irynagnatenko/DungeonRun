@@ -10,7 +10,6 @@ public class Monster extends Character {
     public Monster (int initiativ, int tålighet, int attack, int smidighet, double vanlighet) {
         super(initiativ,  tålighet,  attack, smidighet);
         this.vanlighet = vanlighet;
-
     }
 
     public double getVanlighet() {
@@ -23,12 +22,6 @@ public class Monster extends Character {
 
     @Override
     public String toString() {
-        return "{" +
-                "initiativ=" + initiativ +
-                ", tålighet=" + tålighet +
-                ", attack=" + attack +
-                ", smidighet=" + smidighet +
-                ", vanlighet=" + vanlighet +
-                '}';
+        return "hej";
     }
 }
