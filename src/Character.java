@@ -6,7 +6,7 @@ public class Character {
     private int attack;
     private int smidighet;
 
-    //Hero constructor
+    //Hero constructor// hej
     public Character(String name, int initiativ, int tålighet, int attack, int smidighet) {
         this.name = name;
         this.initiativ = initiativ;
