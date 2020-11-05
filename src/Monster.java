@@ -31,4 +31,20 @@ public class Monster extends Character {
                 ", vanlighet=" + vanlighet +
                 '}';
     }
+    
+    public static void gigantSpider() { //Ska läggas in på bestämd plats i kartan
+        
+        System.out.println("\nAaaah! Du blir påhoppad av en jättespindel!");
+        System.out.println("\nNi slogs ett tag men du förlorade ;-(");
+        
+    }
+    
+    public static void gameOver() {
+        
+        System.out.println("Game over!\n");
+        System.out.println("Vad vill du göra?\n");
+        System.out.println("1. Spela igen.");
+        System.out.println("0. Avsluta.");
+        
+    }
 }

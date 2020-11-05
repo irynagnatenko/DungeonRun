@@ -12,7 +12,8 @@ class main {
     public static void main(String[] args) {
 
         readUserInput();
-
+        Monster.gigantSpider();
+        Monster.gameOver();
     }
 
     public static void readUserInput() {
