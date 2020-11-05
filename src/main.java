@@ -23,10 +23,14 @@ class main {
     static ArrayList<Character> heroes = new ArrayList<>();
     static String fileName = "data.bin";
     static int choice;
+    static boolean runAgain = true;
 
     public static void main(String[] args) {
-
-        menu();
+        importFromFile();
+        while (runAgain) {            
+          menu();  
+        }
+        
 
     }
 
@@ -43,6 +47,10 @@ class main {
                     break;
                 case 2:
                     //loadExistingHero()
+                    break;
+                case 0:
+                    saveToFile();
+                    runAgain = false;
                     break;
             }
     }
@@ -76,6 +84,8 @@ class main {
         }
 
         System.out.println("Du har valt: " + hero.toString());
+        
+        heroes.add(hero);
 
         //Maps mapsObjects = new Maps();  // skapa oblekt av klassen Maps
         //mapsObjects.mapsMenu();         // ropa på objektets metod mapsMenu
