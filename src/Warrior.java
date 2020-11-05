@@ -13,7 +13,7 @@ public class Warrior extends Character {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.hero + "\nNamn: " + this.getName() + "\nInitiativ: " + this.getInitiative() + "\nTålighet: " + this.getEndurance() + "\nAttack: " + this.getAttack() + "\nSmidighet: " + this.getFlexibility();
     }
     
 }
