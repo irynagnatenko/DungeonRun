@@ -17,8 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class main {
-    
-    
+
     //TRASSSJSJSJ!
     
     static String checkName;
@@ -28,12 +27,68 @@ class main {
     static String fileName = "data.ser";
     static int choice;
     static boolean runAgain = true;
+    static final int LITEN = 1, LAGOM = 2, STOR = 3;
 
     public static void main(String[] args) {
-        importFromFile();
-        while (runAgain) {            
-          menu();  
+        mapMenu();
+
+    }
+    
+    public static void mapMenu() {
+        System.out.println("Hur stort äventyr vill du ha?");
+        System.out.println("----");
+        Map map = getMapSize();
+
+        System.out.println("Kartan du valde: ");
+        map.printMap();
+        System.out.println("----");
+
+        System.out.println("Var vill du börja?");
+
+        choice = getStartingPoint();
+
+        map.setStartingPoint(choice);
+
+        map.printMap();
+
+        System.out.println("Vilket håll vill du gå?");
+        System.out.println("1. höger");
+        System.out.println("2. upp");
+
+        int choice2 = input.nextInt();
+
+        map.navigateThroughMap(choice2);
+
+        map.printMap();
+    }
+
+    public static Map getMapSize() {
+        choice = Integer.parseInt(input.nextLine());
+
+        Map map = null;
+
+        switch (choice) {
+            case LITEN:
+                map = new Map(4);
+                break;
+            case LAGOM:
+                map = new Map(5);
+                break;
+            case STOR:
+                map = new Map(8);
+                break;
         }
+        return map;
+    }
+
+    public static int getStartingPoint() {
+        System.out.println("Var vill du börja?");
+        System.out.println("1. Nordväst");
+        System.out.println("2. Nordöst");
+        System.out.println("3. Sydväst");
+        System.out.println("4. Sydöst");
+
+        return Integer.parseInt(input.nextLine());
     }
 
     public static void menu() {
