@@ -37,6 +37,9 @@ class main {
     public static void mapMenu() {
         System.out.println("Hur stort äventyr vill du ha?");
         System.out.println("----");
+        System.out.println("1. litet");
+        System.out.println("2. lagom");
+        System.out.println("3. stort");
         Map map = getMapSize();
 
         System.out.println("Kartan du valde: ");
