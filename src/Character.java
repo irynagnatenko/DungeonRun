@@ -2,7 +2,7 @@
 import java.io.Serializable;
 
 public abstract class Character implements Serializable{
-    
+    //bara en kommentar från Magdalena
     private String name;
     private int initiative;
     private int endurance;
