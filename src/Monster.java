@@ -2,9 +2,7 @@ package src;
 
 import java.util.Scanner;
 
-import javax.naming.event.NamingExceptionEvent;
-
-import jdk.incubator.jpackage.main.Main;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Iryna Gnatenko Date 10/27/2020 Time 1:32 PM Project untitled1
@@ -27,11 +25,11 @@ public class Monster extends Character {
         this.vanlighet = vanlighet;
     }
 
-    @Override
-    public String toString() {
-        return "{" + "initiativ=" + initiativ + ", tålighet=" + tålighet + ", attack=" + attack + ", smidighet="
-                + smidighet + ", vanlighet=" + vanlighet + '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "{" + "initiativ=" + initiativ + ", tålighet=" + tålighet + ", attack=" + attack + ", smidighet="
+//                + smidighet + ", vanlighet=" + vanlighet + '}';
+//    }
 
     public static void troll() {
         System.out.println("\nDu gick in i det nordöstra hörnet men där väntar ett troll");
@@ -52,6 +50,40 @@ public class Monster extends Character {
         System.out.println("Aaaah! Du blir påhoppad av en jättespindel!");
         System.out.println("Ni slogs ett tag men du förlorade ;-(\n");
 
+    }
+    
+    public static void randomizeMonster() {
+        
+        //Randomiseat Spindel dyker upp
+        int result = 0;
+        int min = 1;
+        int max = 100;
+        
+        result = ThreadLocalRandom.current().nextInt(min, max);
+        System.out.println("Tärningsresultat: " + result);
+        
+        if (result >0 && result < 21) {
+            System.out.println("En jättespindel dyker upp!");
+        } else {
+            System.out.println("En jättespindel dyker INTE upp, puuh...");
+        }
+        
+//        
+//
+//    public static int throwDice(int numberOfDice) {
+//        int diceSum = 0;
+//        int diceResult = 0;
+//        int min = 1;
+//        int max = 7;
+//
+//        // För varje tärning, skriv ut "Tärningsresultat: x"
+//        for (int i = 0; i < numberOfDice; i++) {
+//            diceResult = ThreadLocalRandom.current().nextInt(min, max);
+//            System.out.println("Tärningsresultat: " + diceResult);
+//        }
+//
+//        return diceSum;
+//    }
     }
 
     public static void gameOver() {
