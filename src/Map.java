@@ -9,9 +9,7 @@ public class Map {
 
     static Scanner input = new Scanner(System.in);
     public static String[][] crosses = new String[0][0];
-    static ArrayList<Boolean> validDirections = new ArrayList<>();
 //    static int [] checkDirections = new int[4];
-    static boolean up, right, left, down = false;
     private int mapSize;
 
     public int getMapSize() {
@@ -45,24 +43,20 @@ public class Map {
         switch (a) {
             case 1:
                 crosses[0][0] = "[O]";
-//                startPosition.add(northWest);
                 break;
             case 2:
                 crosses[0][mapSize - 1] = "[O]";
-//                startPosition.add(northEast);
                 break;
             case 3:
                 crosses[mapSize - 1][0] = "[O]";
-//                startPosition.add(southWest);
                 break;
             case 4:
                 crosses[mapSize - 1][mapSize - 1] = "[O]";
-//                startPosition.add(southEast);
                 break;
         }
     }
 
-    public void navigateThroughMap() {
+    public void mapNavigator() {
         /* Behöver startpositionen 
       om startpositionen är ett hämta vilket hörn
       om hörn sydväst  kan gå höger eller upp
@@ -77,47 +71,47 @@ public class Map {
         try {
             crosses[positionI - 1][positionJ] = "[X]";            //Case prova gå uppåt
             System.out.println("1. Uppåt");
-            up = true;
             checkDirections[0] = 1;
         } catch (Exception e) {
         }
         try {
             crosses[positionI][positionJ + 1] = "[X]";            //Case prova gå höger
             System.out.println("2. Höger");
-            right = true;
             checkDirections[1] = 2;
         } catch (Exception e) {
         }
         try {
             crosses[positionI + 1][positionJ] = "[X]";            //Case prova gå neråt
             System.out.println("3. Neråt");
-            down = true;
             checkDirections[2] = 3;
         } catch (Exception e) {
         }
         try {
             crosses[positionI][positionJ - 1] = "[X]";            //Case prova gå vänster
             System.out.println("4. Vänster");
-            left = true;
             checkDirections[3] = 4;
         } catch (Exception e) {
         }
 
         int choice = input.nextInt();
 
-        for (int i = 0; i < 4; i++) {
-            if (checkDirections[i] == choice) {
-
-                switch (choice) {
-                    case 1:
-                            crosses[positionI - 1][positionJ] = "[O]";
-                        break;
-                    case 2:    
-                        break;
-                }
-            } else {
-                System.out.println("hejsan");
-            }
+        switch (choice) {
+            case 1:
+                crosses[positionI - 1][positionJ] = "[O]";
+                crosses[positionI][positionJ] = "[X]";
+                break;
+            case 2:
+                crosses[positionI][positionJ + 1] = "[O]";
+                crosses[positionI][positionJ] = "[X]";
+                break;
+            case 3:
+                crosses[positionI + 1][positionJ] = "[O]";
+                crosses[positionI][positionJ] = "[X]";
+                break;
+            case 4:
+                crosses[positionI][positionJ - 1] = "[O]";
+                crosses[positionI][positionJ] = "[X]";
+                break;
         }
     }
 
@@ -132,9 +126,5 @@ public class Map {
             }
         }
         return currentPosition;
-    }
-//                crosses[2][0] = "[O]";
-//                System.out.println("Go up!");
-    //crosses[0][1] = "[O]";
-//               System.out.println("Go right!");        
+    }      
 }
