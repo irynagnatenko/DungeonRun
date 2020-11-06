@@ -107,4 +107,3 @@ public class Map {
     //crosses[0][1] = "[O]";
 //               System.out.println("Go right!");        
 }
-
