@@ -1,4 +1,6 @@
-public class Mage extends Character{
+package src;
+
+public class Mage extends Character {
     
     final String hero = "Mage";
     

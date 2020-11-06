@@ -1,3 +1,5 @@
+package src;
+
 /**
  * Created by Iryna Gnatenko
  * Date 10/27/2020
@@ -12,6 +14,8 @@ class main {
     public static void main(String[] args) {
 
         readUserInput();
+        Monster.troll();
+        Monster.foundTreasure();
         Monster.gigantSpider();
         Monster.gameOver();
     }

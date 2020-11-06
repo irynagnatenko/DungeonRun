@@ -1,4 +1,6 @@
-public class Thief extends Character{
+package src;
+
+public class Thief extends Character {
     
     final String hero = "Thief";
 

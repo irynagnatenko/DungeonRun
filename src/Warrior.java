@@ -1,3 +1,5 @@
+package src;
+
 public class Warrior extends Character {
     
     final String hero = "Warrior";
