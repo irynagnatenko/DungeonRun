@@ -17,6 +17,7 @@ class main {
         Monster.troll();
         Monster.foundTreasure();
         Monster.gigantSpider();
+        Monster.randomizeMonster();
         Monster.gameOver();
     }
 
