@@ -1,4 +1,6 @@
 package src;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 /**
  * Created by Iryna Gnatenko
@@ -13,11 +15,12 @@ class main {
 
     public static void main(String[] args) {
 
-        readUserInput();
-        Monster.troll();
-        Monster.foundTreasure();
-        Monster.gigantSpider();
-        Monster.randomizeMonster();
+       // readUserInput();
+       // Monster.troll();
+       // Monster.foundTreasure();
+       // Monster.gigantSpider();
+        randomizeMonster();
+        randomizeTreasure();
         Monster.gameOver();
     }
 
@@ -53,6 +56,79 @@ class main {
         Maps mapsObjects = new Maps();  // skapa oblekt av klassen Maps
         mapsObjects.mapsMenu();         // ropa på objektets metod mapsMenu
     }
+    
+    public static void randomizeMonster() {
+        
+        //Randomiseat Spindel dyker upp
+        int result = 0;
+        int min = 1;
+        int max = 100;
+        
+        result = ThreadLocalRandom.current().nextInt(min, max);
+        
+        if (result >0 && result < 51) {
+            System.out.println("En jättespindel dyker upp!");
+        } 
+        
+        result = ThreadLocalRandom.current().nextInt(min, max);
+        if (result >0 && result < 16) {
+            System.out.println("Ett skelett dyker upp!");
+        }
+
+        result = ThreadLocalRandom.current().nextInt(min, max); 
+        if (result >0 && result < 11) {
+            System.out.println("En orc dyker upp!");
+        } 
+
+        result = ThreadLocalRandom.current().nextInt(min, max);
+        if (result >0 && result < 6) {
+            System.out.println("Ett troll dyker upp!");
+        } 
+    }
+
+    public static void randomizeTreasure() {
+        
+        int result = 0;
+        int min = 1;
+        int max = 100;
+        boolean treasure = false;
+        
+        result = ThreadLocalRandom.current().nextInt(min, max);
+        if (result >0 && result < 51) {
+            System.out.println("Wow, en hel näve lösa slantar!");
+            treasure = true;
+        } 
+
+        result = ThreadLocalRandom.current().nextInt(min, max);
+        if (result >0 && result < 21) {
+            System.out.println("Wow, en hel pengapung!");
+            treasure = true;
+        } 
+
+        result = ThreadLocalRandom.current().nextInt(min, max);
+        if (result >0 && result < 16) {
+            System.out.println("Wow, guldsmycken!");
+            treasure = true;
+        } 
+
+        result = ThreadLocalRandom.current().nextInt(min, max);
+        if (result >0 && result < 11) {
+            System.out.println("Wow, en fin ädelsten!");
+            treasure = true;
+        } 
+
+        result = ThreadLocalRandom.current().nextInt(min, max);
+        if (result >0 && result < 6) {
+            System.out.println("Wow, en liten skattkista!");
+            treasure = true;
+        } 
+
+        if (treasure == false) {
+            System.out.println("Rummet är tomt ...");
+        }
+
+    }
+
 }
 
 /*

@@ -52,7 +52,7 @@ public class Monster extends Character {
 
     }
     
-    public static void randomizeMonster() {
+   /* public static void randomizeMonster() {
         
         //Randomiseat Spindel dyker upp
         int result = 0;
@@ -67,7 +67,7 @@ public class Monster extends Character {
         } else {
             System.out.println("En jättespindel dyker INTE upp, puuh...");
         }
-        
+      */  
 //        
 //
 //    public static int throwDice(int numberOfDice) {
@@ -84,7 +84,7 @@ public class Monster extends Character {
 //
 //        return diceSum;
 //    }
-    }
+   // }
 
     public static void gameOver() {
 
