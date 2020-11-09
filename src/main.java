@@ -19,6 +19,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 class Main {
 
     //TRASSSJSJSJ!
@@ -30,10 +31,16 @@ class Main {
     static int choice;
     static boolean runAgain = true;
     static final int LITEN = 1, LAGOM = 2, STOR = 3;
+    static boolean testName;
+    static boolean addName = true;
+    static boolean runMenu = true;
 
-    public static void Main(String[] args) {
+    public static void main(String[] args) {
+        
         importFromFile();
+        while (runMenu){
         menu();
+    }
 
     }
 
@@ -116,13 +123,22 @@ class Main {
                 break;
             case 0:
                 saveToFile();
-                runAgain = false;
+                runMenu = false;
                 //output som talar om att det du gjort sparats?
                 break;
         }
     }
-
+    public static void checkName(String name) {
+        testName = true;
+        
+         for (Character c : heroes) {
+        if (name.equalsIgnoreCase(c.getName())) {
+        testName = false;
+        }
+        }
+        }
     public static void createHero() {
+        input.nextLine();
 
         System.out.println("Välj en hjälte: ");
 
@@ -133,23 +149,34 @@ class Main {
         choice = input.nextInt();
         input.nextLine();
 
-        System.out.println("Ange ett namn för din hjälte: ");
-        String name = input.nextLine();
-
-        switch (choice) {
-            case 1:
-                hero = new Warrior(name, 5, 9, 6, 4);
-                break;
-
-            case 2:
-                hero = new Mage(name, 6, 4, 9, 5);
-                break;
-
-            case 3:
-                hero = new Thief(name, 6, 5, 5, 7);
-                break;
+        while (addName){
+            System.out.println("Ange ett namn för din hjälte: ");
+            String name = input.nextLine();
+            checkName(name);
+    
+            if (testName == true){
+                addName = false;
+                switch (choice) {
+                    case 1:
+                        hero = new Warrior(name, 5, 9, 6, 4);
+                        break;
+        
+                    case 2:
+                        hero = new Mage(name, 6, 4, 9, 5);
+                        break;
+        
+                    case 3:
+                        hero = new Thief(name, 6, 5, 5, 7);
+                        break;
+                }
+            } else {
+                System.out.println("Namnet är upptaget, välj ett nytt");
+    
+            }
         }
-
+        
+       
+        
         System.out.println("Du har valt: " + hero.toString());
 
         heroes.add(hero);

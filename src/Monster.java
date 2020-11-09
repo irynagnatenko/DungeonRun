@@ -92,7 +92,7 @@ public class Monster extends Character {
                     Main.saveToFile();
                     System.exit(0);
                 } else if (exitChoice == 1) {
-                    Main.menu();
+                    continueLoop = false;
                 }
 
                 else {
