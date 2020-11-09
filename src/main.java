@@ -1,10 +1,11 @@
+
 /**
  * Created by Iryna Gnatenko
  * Date 10/27/2020
  * Time 1:32 PM
  * Project untitled1
  */
-
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,9 +16,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.lang.NullPointerException;
 
 class main {
-    
+
     static String checkName;
     static Scanner input = new Scanner(System.in);
     static Character hero = null;
@@ -25,112 +27,142 @@ class main {
     static String fileName = "data.ser";
     static int choice;
     static boolean runAgain = true;
+    static boolean testName;
 
     public static void main(String[] args) {
+
         importFromFile();
-        while (runAgain) {            
-          menu();  
+        while (runAgain) {
+            menu();
         }
     }
 
     public static void menu() {
-    
-        System.out.println("Hej och välkommen till Dungeon Run! Låt äventyret börja!");
+
+        System.out.println("\nHej och välkommen till Dungeon Run! Låt äventyret börja!");
         System.out.println("1. Skapa en ny hjälte");
         System.out.println("2. Ladda en befintligt");
         System.out.println("0. Avsluta programmet");
-        
-        choice = input.nextInt();
-            switch(choice) {
-                case 1:
-                    createHero();
-                    break;
-                case 2:
-                    loadExistingHero();
-                    break;
-                case 0:
-                    saveToFile();
-                    runAgain = false;
-                    break;
-            }
-    }
-    
-    public static void createHero() {
-        
-        System.out.println("Välj en hjälte: ");
 
+        choice = input.nextInt();
+        switch (choice) {
+            case 1:
+                createHero();
+                break;
+            case 2:
+                loadExistingHero();
+                break;
+            case 3:
+                displayAll();
+                break;
+            case 0:
+                saveToFile();
+                runAgain = false;
+                break;
+        }
+    }
+
+    public static void createHero() {
+        System.out.println("Välj en hjälte: ");
         System.out.print("1. Riddare");
         System.out.print("\t2. Trollkarl");
         System.out.print("\t3. Tjuv");
-
         choice = input.nextInt();
         input.nextLine();
-        
-        System.out.println("Ange ett namn för din hjälte: ");
-        String name = input.nextLine();
+        while (runAgain) {
 
-        switch(choice) {
-            case 1:
-                hero = new Warrior(name,5, 9, 6, 4);
-                break;
-            
-            case 2:
-                hero = new Mage(name,6, 4, 9, 5);
-                break;
-                
-            case 3:
-                hero = new Thief(name,6, 5, 5, 7);
-                break;
+            System.out.println("Ange ett namn för din hjälte: ");
+            String name = input.nextLine();
+            checkName(name); // kollar om namnet finns
+            if (testName == true) {
+                switch (choice) {
+                    case 1:
+                        hero = new Warrior(name, 5, 9, 6, 4);
+                        runAgain = false;
+                        break;
+
+                    case 2:
+                        hero = new Mage(name, 6, 4, 9, 5);
+                        runAgain = false;
+                        break;
+
+                    case 3:
+                        hero = new Thief(name, 6, 5, 5, 7);
+                        runAgain = false;
+                        break;
+                }
+            } else {
+                System.out.println("\nNamnet finns redan! Testa ett annat namn \n");
+            }
         }
-
-        System.out.println("Du har valt: " + hero.toString());
-        
+        System.out.println("\nDu har valt: " + hero.toString());
         heroes.add(hero);
+        runAgain = true;
 
         //Maps mapsObjects = new Maps();  // skapa oblekt av klassen Maps
         //mapsObjects.mapsMenu();         // ropa på objektets metod mapsMenu
     }
-    
-    public static void saveToFile() { //Jag behöver få in en arrayList eller ett object i metoden. 
+
+    public static void saveToFile() {
 
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
-            os.writeObject(heroes); //Objectet ska in hit. 
+            os.writeObject(heroes);
             os.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Du har inga laddade karakrärer ");
         } catch (IOException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NullPointerException e) {
+            System.out.println(" testar denna ");
         }
-    } 
-    
+    }
+
     public static void loadExistingHero() {
         input.nextLine();
         System.out.println("Ange namnet för din hjälte: ");
-            checkName = input.nextLine();
-            
-            for(Character c : heroes) {
-            if(checkName.equals(c.getName())) {
-                hero = c;
+        checkName = input.nextLine();
+        try {
+            for (Character c : heroes) {
+                if (checkName.equals(c.getName())) {
+                    hero = c;
                 }
             }
-            
-                System.out.println("Du har laddat hjälten: " + hero.toString());             
-            }
-    
+        } catch (NullPointerException e) {
+            System.out.println(" testar denna ");
+        }
+
+        System.out.println("\nDu har laddat hjälten: " + hero.toString());
+    }
+
     public static void importFromFile() {
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));
-            
+
             heroes = (ArrayList<Character>) is.readObject();
             is.close();
-            
-        }catch (IOException ex) {
+
+        } catch (IOException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("testar");
+        } catch (NullPointerException e) {
+            System.out.println(" testar denna ");
         }
-       
+    }
+
+    public static void displayAll() {
+        System.out.println(heroes);
+    }
+
+    public static void checkName(String name) {
+        testName = true;
+
+        for (Character c : heroes) {
+            if (name.equalsIgnoreCase(c.getName())) {
+                testName = false;
+            }
+        }
     }
 }
 
@@ -162,4 +194,4 @@ public class main {
 
     }
 }
-*/
+ */
