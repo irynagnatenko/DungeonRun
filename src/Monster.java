@@ -55,7 +55,7 @@ public class Monster extends Character {
     }
     */
     
-    public static void randomizeMonster() {
+   /* public static void randomizeMonster() {
         
         //Randomiseat Spindel dyker upp
         int result = 0;
@@ -71,12 +71,12 @@ public class Monster extends Character {
             System.out.println("En jättespindel dyker INTE upp, puuh...");
         }
     }
-       
+       */
 
 
     public static void gameOver() {
 
-        System.out.println("Game over!\n");
+        System.out.println("\nGame over!\n");
         System.out.println("Vad vill du göra?\n");
         System.out.println("1. Spela igen.");
         System.out.println("0. Avsluta.");

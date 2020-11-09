@@ -149,6 +149,7 @@ class Main {
         choice = input.nextInt();
         input.nextLine();
 
+        addName = true;
         while (addName){
             System.out.println("Ange ett namn för din hjälte: ");
             String name = input.nextLine();
