@@ -1,44 +1,54 @@
 package src;
+import java.io.Serializable;
 
-public class Character {
     
+public abstract class Character implements Serializable{
+    //bara en kommentar från Magdalena
     private String name;
-    private int initiativ;
-    private int tålighet;
+    private int initiative;
+    private int endurance;
     private int attack;
-    private int smidighet;
+    private int flexibility;
 
-    //Hero constructor// hej
-    public Character(String name, int initiativ, int tålighet, int attack, int smidighet) {
+    //Hero constructor// HEJ fr�n Johanna
+    Character(String name, int initiative, int endurance, int attack, int flexibility) {
         this.name = name;
-        this.initiativ = initiativ;
-        this.tålighet = tålighet;
+        this.initiative = initiative;
+        this.endurance = endurance;
         this.attack = attack;
-        this.smidighet = smidighet;
+        this.flexibility = flexibility;
     }
     
     //Monster constructor
-    public Character(int initiativ, int tålighet, int attack, int smidighet) {
-        this.initiativ = initiativ;
-        this.tålighet = tålighet;
+    Character(int initiative, int endurance, int attack, int flexibility) {
+        this.initiative = initiative;
+        this.endurance = endurance;
         this.attack = attack;
-        this.smidighet = smidighet;
+        this.flexibility = flexibility;
     }
 
-    public int getInitiativ() {
-        return initiativ;
+   public String getName() {
+        return name;
     }
 
-    public void setInitiativ(int initiativ) {
-        this.initiativ = initiativ;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getTålighet() {
-        return tålighet;
+    public int getInitiative() {
+        return initiative;
     }
 
-    public void setTålighet(int tålighet) {
-        this.tålighet = tålighet;
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+    }
+
+    public int getEndurance() {
+        return endurance;
+    }
+
+    public void setEndurance(int endurance) {
+        this.endurance = endurance;
     }
 
     public int getAttack() {
@@ -49,21 +59,14 @@ public class Character {
         this.attack = attack;
     }
 
-    public int getSmidighet() {
-        return smidighet;
+    public int getFlexibility() {
+        return flexibility;
     }
 
-    public void setSmidighet(int smidighet) {
-        this.smidighet = smidighet;
+    public void setFlexibility(int flexibility) {
+        this.flexibility = flexibility;
     }
 
     @Override
-    public String toString() {
-        return "{" +
-                "initiativ=" + getInitiativ() +
-                ", tålighet=" + getTålighet() +
-                ", attack=" + getAttack() +
-                ", smidighet=" + getSmidighet() +
-                '}';
-    }
+    public abstract String toString(); 
 }

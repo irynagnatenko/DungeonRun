@@ -14,7 +14,9 @@ public class Monster extends Character {
     public Monster(int initiativ, int tålighet, int attack, int smidighet, double vanlighet) {
         super(initiativ, tålighet, attack, smidighet);
         this.vanlighet = vanlighet;
-
+    }
+    public Monster (int initiative, int endurance, int attack, int flexibility) {
+        super(initiative, endurance, attack, flexibility);
     }
 
     public double getVanlighet() {
@@ -30,7 +32,7 @@ public class Monster extends Character {
 //        return "{" + "initiativ=" + initiativ + ", tålighet=" + tålighet + ", attack=" + attack + ", smidighet="
 //                + smidighet + ", vanlighet=" + vanlighet + '}';
 //    }
-
+/*
     public static void troll() {
         System.out.println("\nDu gick in i det nordöstra hörnet men där väntar ett troll");
         System.out.println("Efter en tuff kamp går du segrande ur striden och får med dig 10 guldmynt!");
@@ -51,8 +53,9 @@ public class Monster extends Character {
         System.out.println("Ni slogs ett tag men du förlorade ;-(\n");
 
     }
+    */
     
-   /* public static void randomizeMonster() {
+    public static void randomizeMonster() {
         
         //Randomiseat Spindel dyker upp
         int result = 0;
@@ -67,24 +70,9 @@ public class Monster extends Character {
         } else {
             System.out.println("En jättespindel dyker INTE upp, puuh...");
         }
-      */  
-//        
-//
-//    public static int throwDice(int numberOfDice) {
-//        int diceSum = 0;
-//        int diceResult = 0;
-//        int min = 1;
-//        int max = 7;
-//
-//        // För varje tärning, skriv ut "Tärningsresultat: x"
-//        for (int i = 0; i < numberOfDice; i++) {
-//            diceResult = ThreadLocalRandom.current().nextInt(min, max);
-//            System.out.println("Tärningsresultat: " + diceResult);
-//        }
-//
-//        return diceSum;
-//    }
-   // }
+    }
+       
+
 
     public static void gameOver() {
 
@@ -101,9 +89,10 @@ public class Monster extends Character {
                 exitChoice = Integer.parseInt(sc.nextLine());
                // sc.nextLine();
                 if (exitChoice == 0) {
+                    Main.saveToFile();
                     System.exit(0);
                 } else if (exitChoice == 1) {
-                    main.readUserInput();
+                    Main.menu();
                 }
 
                 else {
@@ -113,8 +102,11 @@ public class Monster extends Character {
             } catch (NumberFormatException e) {
                 System.out.println("Fel val, du måste välja 1 eller 0.");
             }
-
         }
+        }
+    @Override
+    public String toString() {
+        return "hej";
     }
 
 }
