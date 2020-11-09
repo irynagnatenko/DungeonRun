@@ -70,7 +70,6 @@ class main {
         choice = input.nextInt();
         input.nextLine();
         while (runAgain) {
-
             System.out.println("Ange ett namn för din hjälte: ");
             String name = input.nextLine();
             checkName(name); // kollar om namnet finns
