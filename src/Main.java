@@ -33,16 +33,14 @@ class Main {
     
 
     public static void main(String[] args) {
-        
         importFromFile();
         while (runMenu) {
             menu();
         }
-
     }
 
     public static void mapMenu() {
-        System.out.println("Hur stort äventyr vill du ha?");
+        System.out.println("Hur stort Ã¤ventyr vill du ha?");
         System.out.println("----");
         System.out.println("1. litet");
         System.out.println("2. lagom");
@@ -61,6 +59,7 @@ class Main {
         // Monster.gigantSpider();
         map.setStartingPoint(choice);
 
+        stillAlive = true;
         while (stillAlive) {
             map.printMap();
             randomizeMonster();
@@ -100,19 +99,19 @@ class Main {
     }
 
     public static int getStartingPoint() {
-        System.out.println("Var vill du börja?");
-        System.out.println("1. Nordväst");
-        System.out.println("2. Nordöst");
-        System.out.println("3. Sydväst");
-        System.out.println("4. Sydöst");
+        System.out.println("Var vill du bÃ¶rja?");
+        System.out.println("1. NordvÃ¤st");
+        System.out.println("2. NordÃ¶st");
+        System.out.println("3. SydvÃ¤st");
+        System.out.println("4. SydÃ¶st");
 
         return Integer.parseInt(input.nextLine());
     }
 
     public static void menu() {
 
-        System.out.println("Hej och välkommen till Dungeon Run! Låt äventyret börja!");
-        System.out.println("1. Skapa en ny hjälte");
+        System.out.println("Hej och vÃ¤lkommen till Dungeon Run! LÃ¥t Ã¤ventyret bÃ¶rja!");
+        System.out.println("1. Skapa en ny hjÃ¤lte");
         System.out.println("2. Ladda en befintligt");
         System.out.println("0. Avsluta programmet");
 
@@ -145,7 +144,7 @@ class Main {
     public static void createHero() {
         input.nextLine();
 
-        System.out.println("Välj en hjälte: ");
+        System.out.println("VÃ¤lj en hjÃ¤lte: ");
 
         System.out.print("1. Riddare");
         System.out.print("\t2. Trollkarl");
@@ -156,7 +155,7 @@ class Main {
 
         addName = true;
         while (addName) {
-            System.out.println("Ange ett namn för din hjälte: ");
+            System.out.println("Ange ett namn fÃ¶r din hjÃ¤lte: ");
             String name = input.nextLine();
             checkName(name);
 
@@ -176,7 +175,7 @@ class Main {
                         break;
                 }
             } else {
-                System.out.println("Namnet är upptaget, välj ett nytt");
+                System.out.println("Namnet Ã¤r upptaget, vÃ¤lj ett nytt");
 
             }
         }
@@ -187,10 +186,10 @@ class Main {
         mapMenu();
 
         //Maps mapsObjects = new Maps();  // skapa oblekt av klassen Maps
-        //mapsObjects.mapsMenu();         // ropa på objektets metod mapsMenu
+        //mapsObjects.mapsMenu();         // ropa pÃ¥ objektets metod mapsMenu
     }
 
-    public static void saveToFile() { //Jag behöver få in en arrayList eller ett object i metoden. 
+    public static void saveToFile() { //Jag behÃ¶ver fÃ¥ in en arrayList eller ett object i metoden. 
 
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
@@ -205,7 +204,7 @@ class Main {
 
     public static void loadExistingHero() {
         input.nextLine();
-        System.out.println("Ange namnet för din hjälte: ");
+        System.out.println("Ange namnet fÃ¶r din hjÃ¤lte: ");
         checkName = input.nextLine();
 
         for (Character c : heroes) {
@@ -213,7 +212,7 @@ class Main {
                 hero = c;
             }
         }
-        System.out.println("Du har laddat hjälten: " + hero.toString());
+        System.out.println("Du har laddat hjÃ¤lten: " + hero.toString());
         mapMenu();
     }
 
@@ -233,43 +232,43 @@ class Main {
 
     public static void randomizeMonster() {
 
-//Randomiseat Spindel dyker upp
+
         int result = 0;
         int min = 1;
         int max = 100;
-        boolean monsterTest = false;
+        boolean ifMonster = false;                  //bolean för att kolla om ett monster dykt upp
         stillAlive = true;
 
         result = ThreadLocalRandom.current().nextInt(min, max);
 
         if (result > 0 && result < 21) {
-            System.out.println("En jättespindel dyker upp!");
+            System.out.println("En jÃ¤ttespindel dyker upp!");
             randomLose();
-            monsterTest = true;
+            ifMonster = true;
         }
 
         result = ThreadLocalRandom.current().nextInt(min, max);
         if (result > 0 && result < 16 && stillAlive == true) {
             System.out.println("Ett skelett dyker upp!");
             randomLose();
-            monsterTest = true;
+            ifMonster = true;
         }
 
         result = ThreadLocalRandom.current().nextInt(min, max);
         if (result > 0 && result < 11 && stillAlive == true) {
             System.out.println("En orc dyker upp!");
             randomLose();
-            monsterTest = true;
+            ifMonster = true;
         }
         result = ThreadLocalRandom.current().nextInt(min, max);
         if (result > 0 && result < 6 && stillAlive == true) {
             System.out.println("Ett troll dyker upp!");
             randomLose();
-            monsterTest = true;
+            ifMonster = true;
         }
 
-        if (monsterTest == false) {
-            System.out.println("Åhhh skönt det finns inge monster! ");
+        if (ifMonster == false) {
+            System.out.println("Ã…hhh skÃ¶nt det finns inge monster! ");
         }
     }
 
@@ -278,40 +277,40 @@ class Main {
         int result = 0;
         int min = 1;
         int max = 100;
-        boolean treasure = false;
+        boolean ifTreassure = false;
 
         result = ThreadLocalRandom.current().nextInt(min, max);
-        if (result > 0 && result < 51) {
-            System.out.println("Wow, en hel näve lösa slantar!");
-            treasure = true;
+        if (result > 0 && result < 41) {
+            System.out.println("Wow, en hel nÃ¤ve lÃ¶sa slantar!");
+            ifTreassure = true;
         }
 
         result = ThreadLocalRandom.current().nextInt(min, max);
         if (result > 0 && result < 21) {
             System.out.println("Wow, en hel pengapung!");
-            treasure = true;
+            ifTreassure = true;
         }
 
         result = ThreadLocalRandom.current().nextInt(min, max);
         if (result > 0 && result < 16) {
             System.out.println("Wow, guldsmycken!");
-            treasure = true;
+            ifTreassure = true;
         }
 
         result = ThreadLocalRandom.current().nextInt(min, max);
         if (result > 0 && result < 11) {
-            System.out.println("Wow, en fin ädelsten!");
-            treasure = true;
+            System.out.println("Wow, en fin Ã¤delsten!");
+            ifTreassure = true;
         }
 
         result = ThreadLocalRandom.current().nextInt(min, max);
         if (result > 0 && result < 6) {
             System.out.println("Wow, en liten skattkista!");
-            treasure = true;
+            ifTreassure = true;
         }
 
-        if (treasure == false) {
-            System.out.println("Tyvärr, ingen skatt för dig den här gången...");
+        if (ifTreassure == false) {
+            System.out.println("TyvÃ¤rr, ingen skatt fÃ¶r dig den hÃ¤r gÃ¥ngen...");
         }
 
     }
@@ -324,7 +323,7 @@ class Main {
 
         result = ThreadLocalRandom.current().nextInt(min, max);
         if (result > 0 && result < 76) {
-            System.out.println("WOW du överlevde");
+            System.out.println("WOW du Ã¶verlevde");
         } else {
             System.out.println("OUPS du dog!");
             stillAlive = false;
@@ -342,20 +341,20 @@ public class Main {
         Character trollkarl = new Hero(6,4,9,5);
         Character tjuven = new Hero(6,5,5,7);
 
-        Character jättespindel = new Monster(7,1,2,3, 0.2);
+        Character jÃ¤ttespindel = new Monster(7,1,2,3, 0.2);
         Character skelett = new Monster(4,2,3,3, 0.15);
         Character orc = new Monster(6,3,4,4, 0.1);
         Character troll = new Monster(2,4,7,2, 0.05);
 
-        System.out.println("Du har valt trollkarl. Du har följande attribut: " + trollkarl.toString());
-        System.out.println("Du har valt riddaren. Du har följande attribut: " + riddaren.toString());
-        System.out.println("Du har valt tjuven. Du har följande attribut: " + tjuven.toString());
+        System.out.println("Du har valt trollkarl. Du har fÃ¶ljande attribut: " + trollkarl.toString());
+        System.out.println("Du har valt riddaren. Du har fÃ¶ljande attribut: " + riddaren.toString());
+        System.out.println("Du har valt tjuven. Du har fÃ¶ljande attribut: " + tjuven.toString());
 
         System.out.println();
-        System.out.println("Det är spindel. Den har följande attribut: " + jättespindel.toString());
-        System.out.println("Det är skelett. Den har följande attribut: " + skelett.toString());
-        System.out.println("Det är orc. Den har följande attribut: " + orc.toString());
-        System.out.println("Det är troll. Den har följande attribut: " + troll.toString());
+        System.out.println("Det Ã¤r spindel. Den har fÃ¶ljande attribut: " + jÃ¤ttespindel.toString());
+        System.out.println("Det Ã¤r skelett. Den har fÃ¶ljande attribut: " + skelett.toString());
+        System.out.println("Det Ã¤r orc. Den har fÃ¶ljande attribut: " + orc.toString());
+        System.out.println("Det Ã¤r troll. Den har fÃ¶ljande attribut: " + troll.toString());
 
 
     }
