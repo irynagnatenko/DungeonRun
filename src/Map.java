@@ -1,6 +1,3 @@
-package src;
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -10,6 +7,10 @@ public class Map {
 
     static Scanner input = new Scanner(System.in);
     public static String[][] crosses = new String[0][0];
+    public static final String purpleFont = "\u001B[35m";
+    public static final String regularFont = "\u001B[0m";
+    public static String yourPosition ="[" + purpleFont + "O" + regularFont + "]";
+    public static String visitedRoom = "";
 //    static int [] checkDirections = new int[4];
     private int mapSize;
 
@@ -43,32 +44,39 @@ public class Map {
     public void setStartingPoint(int a) {
         switch (a) {
             case 1:
-                crosses[0][0] = "[O]";
+                crosses[0][0] = yourPosition;
                 break;
             case 2:
-                crosses[0][mapSize - 1] = "[O]";
+                crosses[0][mapSize - 1] = yourPosition;
                 break;
             case 3:
-                crosses[mapSize - 1][0] = "[O]";
+                crosses[mapSize - 1][0] = yourPosition;
                 break;
             case 4:
-                crosses[mapSize - 1][mapSize - 1] = "[O]";
+                crosses[mapSize - 1][mapSize - 1] = yourPosition;
                 break;
         }
     }
 
-    public void mapNavigator() {
-        /* Behöver startpositionen 
-      om startpositionen är ett hämta vilket hörn
-      om hörn sydväst  kan gå höger eller upp
-      uppåt = 1 minussteg i raden (första hakparantesen), samma poistion i andra hakparantesen
-      höger = 1 plussteg i kolumner (andra hakparantesen),samma poistion i första hakparantesen*/
+    public void navigateThroughMap() {  
         int[] currentPosition = getPosition();
         int positionI = currentPosition[0];
         int positionJ = currentPosition[1];
         System.out.println("Vilket håll vill du gå?");
         int[] checkDirections = {0, 0, 0, 0};
 
+        if (positionI -1 < 0) {
+                System.out.println("KAN EJ GÅ UPPÅT!");
+            }
+        if (positionJ +2 > mapSize) {
+                System.out.println("KAN EJ GÅ HÖGER!");         //FUNKAR
+            }
+        if (positionI +2 > mapSize) {
+                System.out.println("KAN EJ GÅ NERÅT!");         //FUNKAR
+            }
+        if (positionJ -1 < 0) {
+                System.out.println("KAN EJ GÅ VÄNSTER!");       
+            }
         try {
             crosses[positionI - 1][positionJ] = "[X]";            //Case prova gå uppåt
             System.out.println("1. Uppåt");
@@ -98,20 +106,20 @@ public class Map {
 
         switch (choice) {
             case 1:
-                crosses[positionI - 1][positionJ] = "[O]";
-                crosses[positionI][positionJ] = "[X]";
+                crosses[positionI - 1][positionJ] = yourPosition;
+                crosses[positionI][positionJ] = "[O]";
                 break;
             case 2:
-                crosses[positionI][positionJ + 1] = "[O]";
-                crosses[positionI][positionJ] = "[X]";
+                crosses[positionI][positionJ + 1] = yourPosition;
+                crosses[positionI][positionJ] = "[O]";
                 break;
             case 3:
-                crosses[positionI + 1][positionJ] = "[O]";
-                crosses[positionI][positionJ] = "[X]";
+                crosses[positionI + 1][positionJ] = yourPosition;
+                crosses[positionI][positionJ] = "[O]";
                 break;
             case 4:
-                crosses[positionI][positionJ - 1] = "[O]";
-                crosses[positionI][positionJ] = "[X]";
+                crosses[positionI][positionJ - 1] = yourPosition;
+                crosses[positionI][positionJ] = "[O]";
                 break;
         }
     }
@@ -120,7 +128,7 @@ public class Map {
         int[] currentPosition = new int[2];
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                if (crosses[i][j].equals("[O]")) {
+                if (crosses[i][j].contains(yourPosition)) {
                     currentPosition[0] = i;
                     currentPosition[1] = j;
                 }
