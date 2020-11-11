@@ -27,54 +27,11 @@ public class Monster extends Character {
         this.vanlighet = vanlighet;
     }
 
-//    @Override
-//    public String toString() {
-//        return "{" + "initiativ=" + initiativ + ", tålighet=" + tålighet + ", attack=" + attack + ", smidighet="
-//                + smidighet + ", vanlighet=" + vanlighet + '}';
-//    }
-/*
-    public static void troll() {
-        System.out.println("\nDu gick in i det nordöstra hörnet men där väntar ett troll");
-        System.out.println("Efter en tuff kamp går du segrande ur striden och får med dig 10 guldmynt!");
-        System.out.println("Var vill du gå nu?\n");
-
-    }
-
-    public static void foundTreasure() {
-
-        System.out.println("Du fortsatte västerut.");
-        System.out.println("Yihaa, du hittar en skatt! Ta upp den och du får tio nya guldmynt.");
-        System.out.println("Var vill du gå nu?\n");
-    }
-
-    public static void gigantSpider() { // Ska läggas in på bestämd plats i kartan
-        System.out.println("Du gick söderut.");
-        System.out.println("Aaaah! Du blir påhoppad av en jättespindel!");
-        System.out.println("Ni slogs ett tag men du förlorade ;-(\n");
-
-    }
-    */
-    
-   /* public static void randomizeMonster() {
-        
-        //Randomiseat Spindel dyker upp
-        int result = 0;
-        int min = 1;
-        int max = 100;
-        
-        result = ThreadLocalRandom.current().nextInt(min, max);
-        System.out.println("Tärningsresultat: " + result);
-        
-        if (result >0 && result < 21) {
-            System.out.println("En jättespindel dyker upp!");
-        } else {
-            System.out.println("En jättespindel dyker INTE upp, puuh...");
-        }
-    }
-       */
 
 
     public static void gameOver() {
+
+        UserInterface save = new UserInterface();
 
         System.out.println("\nGame over!\n");
         System.out.println("Vad vill du göra?\n");
@@ -89,7 +46,7 @@ public class Monster extends Character {
                 exitChoice = Integer.parseInt(sc.nextLine());
                // sc.nextLine();
                 if (exitChoice == 0) {
-                    Main.saveToFile();
+                    save.saveToFile();
                     System.exit(0);
                 } else if (exitChoice == 1) {
                     continueLoop = false;
