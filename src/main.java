@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 class Main {
 
+        
     //TRASSSJSJSJ!
     static String checkName;
     static Scanner input = new Scanner(System.in);
@@ -34,7 +35,7 @@ class Main {
     
 
     public static void main(String[] args) {
-
+        
         boolean runMenu = true;
         UserInterface userMenu = new UserInterface();
         userMenu.importFromFile();
@@ -42,4 +43,4 @@ class Main {
             userMenu.menu();
         }
     }
-    }
+}
