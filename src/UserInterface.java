@@ -40,6 +40,7 @@ class UserInterface {
         Map map = getMap();
  
         System.out.println("Kartan du valde: ");
+        map.mapInstructions();
         map.printMap();
         System.out.println("----");
  
