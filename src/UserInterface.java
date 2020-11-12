@@ -53,7 +53,7 @@ class UserInterface {
             stillAlive = random.randomizeMonster();
             if (stillAlive == true) {
                 random.randomizeTreasure();
-                map.mapNavigator();
+                map.navigateThroughMap();
             } else {
                 stillAlive = false;
                 Monster.gameOver();
