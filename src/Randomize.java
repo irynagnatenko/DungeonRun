@@ -115,4 +115,24 @@ public class Randomize {
             stillAlive = false;
         }
     }
+
+    public boolean randomizeFlight() {
+        
+        int result = 0;
+        int min = 1;
+        int max = 100;
+        boolean flightSuccessful;
+        
+        result = ThreadLocalRandom.current().nextInt(min, max);
+        
+        if (result >0 && result < 51) {
+            System.out.println("Du lyckades fly!");
+            flightSuccessful = true;
+        } else {
+            System.out.println("Du lyckads inte fly... du måste stanna och slåss!");
+            flightSuccessful = false;
+        }
+        
+        return flightSuccessful;
+    }
 }

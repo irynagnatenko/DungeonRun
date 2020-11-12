@@ -1,6 +1,6 @@
 package src;
 
-import java.util.ArrayList;
+// DENNA ÄR DET SOM GÄLLER
 import java.util.Scanner;
 
 /**
@@ -9,8 +9,17 @@ import java.util.Scanner;
 public class Map {
 
     static Scanner input = new Scanner(System.in);
-    public static String[][] crosses = new String[0][0];
-//    static int [] checkDirections = new int[4];
+    private static String[][] crosses = new String[0][0];
+    private static Object[][] rooms = new Object[0][0];
+    private static final String PURPLEFONT = "\u001B[35m";
+    private static final String REGULARFONT = "\u001B[0m";
+    private static final String GREENFONT = "\u001B[32m";
+    public static final String REDFONT = "\u001B[31m";
+    private static String yourPosition = "[" + PURPLEFONT + "O" + REGULARFONT + "]";
+    private static String visitedRoom = "[" + GREENFONT + "*" + REGULARFONT + "]";
+    private static String roomWithMonster = "[" + REDFONT + "M" + REGULARFONT + "]";
+    private static String invalidDirections = REDFONT + "--------" + REGULARFONT;
+
     private int mapSize;
 
     public int getMapSize() {
@@ -23,16 +32,27 @@ public class Map {
 
     public Map(int a) {
         mapSize = a;
-        crosses = new String[mapSize][mapSize];                   //skapar en 'a' stor array
-        for (int i = 0; i < mapSize; i++) {                       //nested foor loo för att sätta alla värden i 2darrayen till X
+        crosses = new String[mapSize][mapSize];
+        for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
                 crosses[i][j] = "[X]";
             }
         }
     }
 
+    public void mapInstructions() {
+
+        System.out.println("****************************");
+        System.out.println(yourPosition + " = din position");
+        System.out.println("[X] = obesökt rum");
+        System.out.println(visitedRoom + " = besökt rum");
+        System.out.println(roomWithMonster + " = monster kvar i rummet");
+        System.out.println("****************************");
+
+    }
+
     public void printMap() {
-        for (int i = 0; i < mapSize; i++) {                       //skriver ut alla positioner i arrayen
+        for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
                 System.out.print(crosses[i][j]);
             }
@@ -43,76 +63,88 @@ public class Map {
     public void setStartingPoint(int a) {
         switch (a) {
             case 1:
-                crosses[0][0] = "[O]";
+                crosses[0][0] = yourPosition;
                 break;
             case 2:
-                crosses[0][mapSize - 1] = "[O]";
+                crosses[0][mapSize - 1] = yourPosition;
                 break;
             case 3:
-                crosses[mapSize - 1][0] = "[O]";
+                crosses[mapSize - 1][0] = yourPosition;
                 break;
             case 4:
-                crosses[mapSize - 1][mapSize - 1] = "[O]";
+                crosses[mapSize - 1][mapSize - 1] = yourPosition;
                 break;
         }
     }
 
-    public void mapNavigator() {
-        /* Behöver startpositionen 
-      om startpositionen är ett hämta vilket hörn
-      om hörn sydväst  kan gå höger eller upp
-      uppåt = 1 minussteg i raden (första hakparantesen), samma poistion i andra hakparantesen
-      höger = 1 plussteg i kolumner (andra hakparantesen),samma poistion i första hakparantesen*/
+    public void navigateThroughMap() {
+
         int[] currentPosition = getPosition();
         int positionI = currentPosition[0];
         int positionJ = currentPosition[1];
-        System.out.println("Vilket håll vill du gå?");
-        int[] checkDirections = {0, 0, 0, 0};
+        // boolean continueInMap = false;
+        int choiceUseDoor;
 
-        try {
-            crosses[positionI - 1][positionJ] = "[X]";            //Case prova gå uppåt
-            System.out.println("1. Uppåt");
-            checkDirections[0] = 1;
-        } catch (Exception e) {
-        }
-        try {
-            crosses[positionI][positionJ + 1] = "[X]";            //Case prova gå höger
-            System.out.println("2. Höger");
-            checkDirections[1] = 2;
-        } catch (Exception e) {
-        }
-        try {
-            crosses[positionI + 1][positionJ] = "[X]";            //Case prova gå neråt
-            System.out.println("3. Neråt");
-            checkDirections[2] = 3;
-        } catch (Exception e) {
-        }
-        try {
-            crosses[positionI][positionJ - 1] = "[X]";            //Case prova gå vänster
-            System.out.println("4. Vänster");
-            checkDirections[3] = 4;
-        } catch (Exception e) {
-        }
+        if (yourPosition == crosses[0][2] || yourPosition == crosses[4][2]) {
+            System.out.println("Du är vid en utgång.");
+            System.out.println("Vill du fortsätta [1], avsluta [2]?");
+            choiceUseDoor = input.nextInt();
+            input.nextLine();
+            if (choiceUseDoor == 2) {
+                System.exit(0);
+            }
 
-        int choice = input.nextInt();
+            if (positionJ + 1 < mapSize) {
+                System.out.println("2.Höger");
+            } else {
+                System.out.println("2." + invalidDirections);
+            }
+            if (positionI + 1 < mapSize) {
+                System.out.print("3.Ner");
+            } else {
+                System.out.println("3." + invalidDirections);
+            }
+            if (positionJ - 1 >= 0) {
+                System.out.println("4.Vänster");
+            } else {
+                System.out.println("4." + invalidDirections);
+            }
 
-        switch (choice) {
-            case 1:
-                crosses[positionI - 1][positionJ] = "[O]";
-                crosses[positionI][positionJ] = "[X]";
-                break;
-            case 2:
-                crosses[positionI][positionJ + 1] = "[O]";
-                crosses[positionI][positionJ] = "[X]";
-                break;
-            case 3:
-                crosses[positionI + 1][positionJ] = "[O]";
-                crosses[positionI][positionJ] = "[X]";
-                break;
-            case 4:
-                crosses[positionI][positionJ - 1] = "[O]";
-                crosses[positionI][positionJ] = "[X]";
-                break;
+            int choice = input.nextInt();
+            boolean flightSuccessful;
+            Randomize randomFlight = new Randomize();
+            flightSuccessful = randomFlight.randomizeFlight();
+
+            switch (choice) {
+                case 1:
+                    crosses[positionI - 1][positionJ] = yourPosition;
+                    crosses[positionI][positionJ] = visitedRoom;
+                    if (flightSuccessful) {
+                        crosses[positionI][positionJ] = roomWithMonster;
+                    }
+                    break;
+                case 2:
+                    crosses[positionI][positionJ + 1] = yourPosition;
+                    crosses[positionI][positionJ] = visitedRoom;
+                    if (flightSuccessful) {
+                        crosses[positionI][positionJ] = roomWithMonster;
+                    }
+                    break;
+                case 3:
+                    crosses[positionI + 1][positionJ] = yourPosition;
+                    crosses[positionI][positionJ] = visitedRoom;
+                    if (flightSuccessful) {
+                        crosses[positionI][positionJ] = roomWithMonster;
+                    }
+                    break;
+                case 4:
+                    crosses[positionI][positionJ - 1] = yourPosition;
+                    crosses[positionI][positionJ] = visitedRoom;
+                    if (flightSuccessful) {
+                        crosses[positionI][positionJ] = roomWithMonster;
+                    }
+                    break;
+            }
         }
     }
 
@@ -120,12 +152,12 @@ public class Map {
         int[] currentPosition = new int[2];
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                if (crosses[i][j].equals("[O]")) {
+                if (crosses[i][j].contains(yourPosition)) {
                     currentPosition[0] = i;
                     currentPosition[1] = j;
                 }
             }
         }
         return currentPosition;
-    }      
+    }
 }
