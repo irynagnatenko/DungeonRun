@@ -8,26 +8,11 @@ import java.util.concurrent.ThreadLocalRandom;
  * Created by Iryna Gnatenko Date 10/27/2020 Time 1:32 PM Project untitled1
  */
 public class Monster extends Character {
-    public double vanlighet;
     static Scanner sc = new Scanner(System.in);
 
-    public Monster(int initiativ, int tålighet, int attack, int smidighet, double vanlighet) {
-        super(initiativ, tålighet, attack, smidighet);
-        this.vanlighet = vanlighet;
+    public Monster (String name, int initiative, int endurance, int attack, int flexibility) {
+        super(name, initiative, endurance, attack, flexibility);
     }
-    public Monster (int initiative, int endurance, int attack, int flexibility) {
-        super(initiative, endurance, attack, flexibility);
-    }
-
-    public double getVanlighet() {
-        return vanlighet;
-    }
-
-    public void setVanlighet(double vanlighet) {
-        this.vanlighet = vanlighet;
-    }
-
-
 
     public static void gameOver() {
 
