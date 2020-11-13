@@ -109,8 +109,8 @@ public static void attackOrder(ArrayList<Character> combatants) {
     
         //Hoppar in i stridsfassen i den turordning som angetts
         attack(combatants);
-}
-       
+    }
+   
 
 
 //Attack metod
@@ -218,11 +218,17 @@ public static void attack(ArrayList<Character> combatants) {
                     combat = false;
                 }
                 else if(combatants.get(p) instanceof Monster && combatants.get(p).getEndurance() != 0) {
+                }else if(combatants.get(p) instanceof Monster && combatants.get(p).getEndurance() != 0) {
+                }else if(combatants.get(p) instanceof Monster && combatants.get(p).getEndurance() != 0) {
+                else if(combatants.get(p) instanceof Monster && combatants.get(p).getEndurance() != 0) {
+                }else if(combatants.get(p) instanceof Monster && combatants.get(p).getEndurance() != 0) {
+                }else if(combatants.get(p) instanceof Monster && combatants.get(p).getEndurance() != 0) {
                     combat = true;
                     break;
                 }
                 else if(hero.getEndurance() == 0) {
                     combat = false;
+                    Monster.gameOver();
                     break;
                 }    
             }

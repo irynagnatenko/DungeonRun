@@ -48,7 +48,7 @@ public class Monster extends Character {
         }
     @Override
     public String toString() {
-        return "hej";
+        return "\nInitiativ: " + this.getInitiative() + "\nTålighet: " + this.getEndurance() + "\nAttack: " + this.getAttack() + "\nSmidighet: " + this.getFlexibility();
     }
 
 }

@@ -210,4 +210,18 @@ class UserInterface {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public static void pressEnter() {
+        System.out.println("Tryck ENTER för att fortsätta striden");
+        runAgain = true;
+        while(runAgain) {
+        String cont = input.nextLine();
+        if(cont.matches("^[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?\\u0080-\\uFFFF]+$")) {
+        System.out.println("Please press Enter to continue");
+        runAgain = true;
+        }
+        else{
+        runAgain = false;
+        }
+        }
+        }
 }
