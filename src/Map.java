@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Map {
 
     static Scanner input = new Scanner(System.in);
+    static boolean stillAlive = true;
     private static String[][] crosses = new String[0][0];
     private static Object[][] rooms = new Object[0][0];
     private static final String PURPLEFONT = "\u001B[35m";
@@ -77,76 +78,89 @@ public class Map {
         }
     }
 
-    public void navigateThroughMap() {
+    public void navigateThroughMap(Character hero) {
 
-        int[] currentPosition = getPosition();
-        int positionI = currentPosition[0];
-        int positionJ = currentPosition[1];
-        // boolean continueInMap = false;
-        int choiceUseDoor;
+        while (stillAlive) {
+            int[] currentPosition = getPosition();
+            int positionI = currentPosition[0];
+            int positionJ = currentPosition[1];
+            // boolean continueInMap = false;
+            int choiceUseDoor = 0;
 
-        if (yourPosition == crosses[0][2] || yourPosition == crosses[4][2]) {
-            System.out.println("Du är vid en utgång.");
-            System.out.println("Vill du fortsätta [1], avsluta [2]?");
-            choiceUseDoor = input.nextInt();
-            input.nextLine();
+            if (yourPosition == crosses[0][0] || yourPosition == crosses[4][2]) {
+                System.out.println("Du är vid en utgång.");
+                System.out.println("Vill du fortsätta [1], avsluta [2]?");
+                choiceUseDoor = input.nextInt();
+                input.nextLine();
+            }
             if (choiceUseDoor == 2) {
                 System.exit(0);
+            } else if(choiceUseDoor == 1){
+                if (positionI - 1 >= 0) {
+                    System.out.println("1.Upp");
+                } else {
+                    System.out.println("1." + invalidDirections);
+                }
+                if (positionJ + 1 < mapSize) {
+                    System.out.println("2.Höger");
+                } else {
+                    System.out.println("2." + invalidDirections);
+                }
+                if (positionI + 1 < mapSize) {
+                    System.out.print("3.Ner");
+                } else {
+                    System.out.println("3." + invalidDirections);
+                }
+                if (positionJ - 1 >= 0) {
+                    System.out.println("4.Vänster");
+                } else {
+                    System.out.println("4." + invalidDirections);
+                }
             }
-
-            if (positionJ + 1 < mapSize) {
-                System.out.println("2.Höger");
-            } else {
-                System.out.println("2." + invalidDirections);
-            }
-            if (positionI + 1 < mapSize) {
-                System.out.print("3.Ner");
-            } else {
-                System.out.println("3." + invalidDirections);
-            }
-            if (positionJ - 1 >= 0) {
-                System.out.println("4.Vänster");
-            } else {
-                System.out.println("4." + invalidDirections);
-            }
-
             int choice = input.nextInt();
-            boolean flightSuccessful;
-            Randomize randomFlight = new Randomize();
-            flightSuccessful = randomFlight.randomizeFlight();
+            //boolean flightSuccessful;
+            //Randomize randomFlight = new Randomize();
+            //flightSuccessful = randomFlight.randomizeFlight();
 
             switch (choice) {
                 case 1:
                     crosses[positionI - 1][positionJ] = yourPosition;
-                    crosses[positionI][positionJ] = visitedRoom;
-                    if (flightSuccessful) {
-                        crosses[positionI][positionJ] = roomWithMonster;
-                    }
                     break;
                 case 2:
                     crosses[positionI][positionJ + 1] = yourPosition;
-                    crosses[positionI][positionJ] = visitedRoom;
-                    if (flightSuccessful) {
-                        crosses[positionI][positionJ] = roomWithMonster;
-                    }
+                    //crosses[positionI][positionJ] = visitedRoom;
+                    //if (flightSuccessful) {
+                    //    crosses[positionI][positionJ] = roomWithMonster;
+                    //}
                     break;
                 case 3:
                     crosses[positionI + 1][positionJ] = yourPosition;
-                    crosses[positionI][positionJ] = visitedRoom;
-                    if (flightSuccessful) {
-                        crosses[positionI][positionJ] = roomWithMonster;
-                    }
                     break;
                 case 4:
                     crosses[positionI][positionJ - 1] = yourPosition;
-                    crosses[positionI][positionJ] = visitedRoom;
-                    if (flightSuccessful) {
-                        crosses[positionI][positionJ] = roomWithMonster;
-                    }
                     break;
             }
+
+            stillAlive = Combat.checkMonsters(stillAlive, hero);
+
+            // Slumpa monster
+            // om monster fråga om combat eller fly
+            // om combat
+            //// om hjälten är vid liv slumpa skatt
+
+            // om väljer fly
+            // om lyckas fly
+            // skriv ut position "roomWithMonster"     
+            // flyttas till föregående rum
+            // annars strid
+
+            // skriv ut position "visited room"
+
         }
     }
+    
+
+    
 
     public int[] getPosition() {
         int[] currentPosition = new int[2];
