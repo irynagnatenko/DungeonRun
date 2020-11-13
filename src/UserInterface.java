@@ -185,15 +185,16 @@ class UserInterface {
     public static void loadExistingHero() {
         input.nextLine();
         System.out.println("Ange namnet för din hjälte: ");
-        checkName = input.nextLine();
+        checkName = input.nextLine(); 
 
         for (Character c : heroes) {
             if (checkName.equals(c.getName())) {
                 hero = c;
-            }
-        }
+            } 
+
         System.out.println("Du har laddat hjälten: " + hero.toString());
         mapMenu();
+        }
     }
 
     public static void importFromFile() {

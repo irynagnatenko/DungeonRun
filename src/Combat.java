@@ -16,7 +16,7 @@ public class Combat {
     int diceRoll = 0;
     diceRoll = rand.nextInt(6 - 1 + 1) + 1;
     return diceRoll;
-}
+    }
 
 //Checkmonster metod i Combat
 public static boolean checkMonsters(boolean stillAlive, Character hero) {
@@ -78,6 +78,8 @@ public static void attackOrder(ArrayList<Character> combatants) {
         //Adderar in i en array, den slagna summan för index i 
         turnOrder.add(orderSum);
     }
+
+
     
     //Sortera upp ordningen så det sammankopplar med karaktärerna som läses in
     for(int i = 0; i < turnOrder.size(); i++) {
@@ -103,7 +105,7 @@ public static void attackOrder(ArrayList<Character> combatants) {
             System.out.println(combatants.get(i).getName() + " (" + turnOrder.get(i).toString() + ")");
             //Printar ut informationen om karaktären
             System.out.println(combatants.get(i).toString());
-                }
+            }
     
         //Hoppar in i stridsfassen i den turordning som angetts
         attack(combatants);

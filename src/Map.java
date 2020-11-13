@@ -107,7 +107,7 @@ public class Map {
                     System.out.println("2." + invalidDirections);
                 }
                 if (positionI + 1 < mapSize) {
-                    System.out.print("3.Ner");
+                    System.out.println("3.Ner");
                 } else {
                     System.out.println("3." + invalidDirections);
                 }
